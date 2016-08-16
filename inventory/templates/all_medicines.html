@@ -1,0 +1,12 @@
+<html>
+<body>
+<h1>Medicines</h1>
+{% for medicine in medicines %}
+<div>
+<h2> <a href="/inventory/get_med/{{medicine.medicine_name}}">{{medicine.medicine_name}}</a></h2>
+<p> {{medicine.quantity}} </p>
+<p> {{medicine.expiry_date}} </p>
+</div>
+{% endfor %}
+</body>
+</html>

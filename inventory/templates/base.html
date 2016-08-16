@@ -1,0 +1,28 @@
+{% load static %}
+
+<html lang="en">
+<head>
+<body>
+
+<title>
+	{% block title %}My base template {% endblock %}
+</title>
+</head>
+
+<body>
+	<div id="page">
+	<div id="sidebar">
+		{% block sidebar %}
+		<ul>
+		<li><a href="/admin/">Admin</a></li>
+		</ul>
+		{% endblock %}
+	</div>
+
+	<div id="content">
+		{% block content %}I'm block content{% endblock %}
+
+	</div>
+	</div>
+</body>
+</html>
