@@ -8,7 +8,10 @@ from django.http import HttpResponse
 from forms import PatientForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
+from django.contrib.auth.models import User, Group
+from rest_framework import viewsets
 
+from doctor.serializers import *
 
 # Create your views here.
 
@@ -44,6 +47,25 @@ def create(request, doctor_id=1):
 	args['form'] = form
 	args['doctor'] = doctor_id
 	return render_to_response('create_patient.html', args)
+
+#1
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+#2
+class GroupViewSet(viewsets.ModelViewSet):
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+
+
+#7
+class  PatientViewSet(viewsets.ModelViewSet):
+    queryset = Patient.objects.all()
+    serializer_class = PatientSerializer
+#7
+class  RegisterDevicesForPatientViewSet(viewsets.ModelViewSet):
+    queryset = RegisterDevicesForPatient.objects.all()
+    serializer_class = RegisterDevicesForPatientSerializer
 
 
 

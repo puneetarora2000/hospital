@@ -11,6 +11,10 @@ def get_upload_file_name(instance, filename):
 	return "uploaded_files/%s_%s" % (str(time()).replace('.','_'), filename)
 
 
+
+class InsuranceCompany(models.Model):
+	  InsuranceCompanyName = models.CharField(max_length=300)
+
 class Patient(models.Model):
 	Patient_ID = models.TextField(max_length=254)
 	FullName = models.CharField(max_length=300)
@@ -19,6 +23,7 @@ class Patient(models.Model):
 	RegisterPatientRemoteMonitoring = models.BooleanField()
 	Credential = models.FileField(upload_to = get_upload_file_name)
 	Doctor_Visited_Id = models.TextField(max_length=254)
+	InsuranceCompanyID = models.ForeignKey('InsuranceCompany',default=1,blank=True)
 
 
 	def __unicode__(self):

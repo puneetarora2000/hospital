@@ -19,7 +19,7 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class PatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model =  Patient
-        fields = ('Patient_ID','FullName','FullAddress','Patient_History','RegisterPatientRemoteMonitoring','Credential','Doctor_Visited_Id')
+        fields = ('Patient_ID','FullName','FullAddress','Patient_History','RegisterPatientRemoteMonitoring','Credential','Doctor_Visited_Id','InsuranceCompanyID')
 
 #
 class RegisterDevicesForPatientSerializer(serializers.HyperlinkedModelSerializer):
