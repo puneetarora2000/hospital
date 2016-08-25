@@ -13,10 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include, patterns
+from django.conf.urls import patterns
 from django.contrib import admin
 admin.autodiscover()
 
+from django.conf.urls import url, include
+from rest_framework import routers
+from doctor  import views
+
+router = routers.DefaultRouter()
+router.register(r'users', views.UserViewSet),
+router.register(r'groups', views.GroupViewSet),
+router.register(r'patients', views. PatientViewSet)
+router.register(r'patientsdevices', views. RegisterDevicesForPatientViewSet)
 urlpatterns = patterns('',
     url(r'^admin/', admin.site.urls),
     url(r'^appointments/', include('appointments.urls')),
@@ -30,5 +39,13 @@ urlpatterns = patterns('',
     url(r'^accounts/loggedin/$', 'hospital.views.loggedin'),
     url(r'^accounts/invalid/$', 'hospital.views.invalid_login'),
     url(r'^accounts/register/$', 'hospital.views.register_user'),
-    
+    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
 )
+
+
+
+
+
+
+
+ 

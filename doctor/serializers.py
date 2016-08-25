@@ -24,5 +24,5 @@ class PatientSerializer(serializers.HyperlinkedModelSerializer):
 #
 class RegisterDevicesForPatientSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model =  Patient
+        model =  RegisterDevicesForPatient
         fields = ('Patient_ID','SugarMonitoringDevice','WorkOutMachineDevice','PulseMonitor','TemperatureMonitor','SleepPatternsMonitor','GulcoseMonitoringDeviceID','WorkOutMachineDeviceID','PulseMonitorID','TemperatureMonitorID','SleepPatternsDeviceID')

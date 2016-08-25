@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'appointments',
     'practitioner',
     'related_admin',
+    'rest_framework',
 ]
 
 MIDDLEWARE_CLASSES = [
