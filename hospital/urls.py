@@ -26,7 +26,9 @@ router.register(r'users', views.UserViewSet),
 router.register(r'groups', views.GroupViewSet),
 router.register(r'patients', views. PatientViewSet)
 router.register(r'patientsdevices', views. RegisterDevicesForPatientViewSet)
+
 urlpatterns = patterns('',
+    url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^appointments/', include('appointments.urls')),
     url(r'^inventory/', include('inventory.urls')),
@@ -48,4 +50,3 @@ urlpatterns = patterns('',
 
 
 
- 

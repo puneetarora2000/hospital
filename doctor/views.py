@@ -11,7 +11,7 @@ from django.core.context_processors import csrf
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 
-from doctor.serializers import *
+from doctor.serializers import GroupSerializer,PatientSerializer,UserSerializer,RegisterDevicesForPatientSerializer
 
 # Create your views here.
 

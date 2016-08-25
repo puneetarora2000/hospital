@@ -143,3 +143,7 @@ STATICFILES_DIRS = [
      os.path.join(BASE_DIR, "static"),
     'D:/Dropbox/pythonprojects/www.hospital1.com/static',
     ]    
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'PAGE_SIZE': 10
+}
