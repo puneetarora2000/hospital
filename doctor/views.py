@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from django.template import Context
 from django.shortcuts import render_to_response
-from doctor.models import Patient
+from doctor.models import Patient,RegisterDevicesForPatient
 from practitioner.models import Practitioner
 from django.http import HttpResponse
 from forms import PatientForm
@@ -43,4 +43,7 @@ def create(request, doctor_id=1):
 	args.update(csrf(request))
 	args['form'] = form
 	args['doctor'] = doctor_id
-	return render_to_response('create_patient.html', args)	
+	return render_to_response('create_patient.html', args)
+
+
+

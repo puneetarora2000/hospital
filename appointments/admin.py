@@ -29,7 +29,7 @@ admin.site.register(Group,GroupAdmin)
 #     model = Group
 #RelatedFieldAdmin
 class AppointmentAdmin(admin.ModelAdmin):
-     empty_value_display = '-empty-'
+    empty_value_display = '-empty-'
     search_fields = ['id','DateOfAppointment']
     list_display = ('id', 'emp_name', 'Remarks')
 
@@ -40,5 +40,10 @@ class AppointmentAdmin(admin.ModelAdmin):
         return instance.PatientId.username
 
     list_per_page = 10
+
+
+
+
+
 
 admin.site.register(Appointment,AppointmentAdmin)

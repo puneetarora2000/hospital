@@ -14,4 +14,4 @@ class Employee(models.Model):
 	Date_Of_Joining = models.DateField()
 
 	def __unicode__(self):
-		return self.user
+		return self.Employee_Name
