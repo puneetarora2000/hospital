@@ -61,3 +61,14 @@ class RegisterDevicesForPatient(models.Model):
 
 
 
+class PatientHealthData(models.Model):
+	Patient_ID = models.ForeignKey('Patient',default=1,blank=True)
+	InsuranceCompanyID = models.ForeignKey('InsuranceCompany',default=1,blank=True)
+	DataOfReading = models.DateTimeField(auto_now_add=True)
+	SugarMonitoringDeviceReading = models.FloatField(default=0)
+	WorkOutMachineDeviceReading = models.FloatField(default=0)
+	PulseMonitorReading = models.FloatField(default=0)
+	TemperatureMonitorReading =  models.FloatField(default=0)
+	SleepPatternsMonitorReading = models.FloatField(default=0)
+	def __unicode__(self):
+		return self.Patient_ID
