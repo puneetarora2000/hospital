@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'pharmacist',
     'employee',
     'appointments',
+    'bone_age',
     'practitioner',
     'related_admin',
     'rest_framework',
