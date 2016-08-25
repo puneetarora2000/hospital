@@ -19,6 +19,6 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 class AppointmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model =  Appointment
-        fields = ('contact','start_datetime','end_datetime','measurement','interval','lastupdate')
+        fields = ('EmployeeID','PatientId','DateOfAppointment','Remarks')
 
 #
