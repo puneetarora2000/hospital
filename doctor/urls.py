@@ -1,4 +1,9 @@
 from django.conf.urls import patterns, include, url
+from autofixture import generators, register, AutoFixture
+
+#AutoFixture.autodiscover()
+
+#http://stackoverflow.com/questions/12807220/why-isnt-admin-autodiscover-called-automatically-in-django-when-using-the-adm
 
 urlpatterns = patterns(
 	'',

@@ -1,40 +1,46 @@
 from __future__ import unicode_literals
-from django.db import models
-from time import time
-from time import time
+from employee.models import *
 import random
 import string
+
+from employee.models import *
 
 # Create your models here.
 
 def get_upload_file_name(instance, filename):
 	return "uploaded_files/%s_%s" % (str(time()).replace('.','_'), filename)
 
+# class Group(models.Model):
+# 	  User = models.ForeignKey(User,related_name='groups')
+# 	  def __unicode__(self):
+# 		return str(self.InsuranceCompanyName)
 
 
 class InsuranceCompany(models.Model):
 	  InsuranceCompanyName = models.CharField(max_length=300)
+	  def __unicode__(self):
+		return str(self.InsuranceCompanyName)
 
 class Patient(models.Model):
-	Patient_ID = models.TextField(max_length=254)
-	FullName = models.CharField(max_length=300)
+	Patient_ID = models.IntegerField()
+	FullName = models.CharField(max_length=30)
 	FullAddress= models.TextField(max_length=254)
 	Patient_History = models.TextField()
 	RegisterPatientRemoteMonitoring = models.BooleanField()
 	Credential = models.FileField(upload_to = get_upload_file_name)
-	Doctor_Visited_Id = models.TextField(max_length=254)
-	InsuranceCompanyID = models.ForeignKey('InsuranceCompany',default=1,blank=True)
+	DoctorID = models.ForeignKey(User,default=1, limit_choices_to={'groups__id':5})
+	InsuranceCompanyID = models.ForeignKey(InsuranceCompany,default=1,blank=True)
 
 
 	def __unicode__(self):
-		return self.Patient_ID
+		return str(self.Patient_ID)
 
 class RegisterDevicesForPatient(models.Model):
 	Patient_ID = models.ForeignKey('Patient',default=1,blank=True)
-	SugarMonitoringDevice = models.BooleanField(default=True)
+	SugarMonitoringDevice = models.BooleanField(default=False)
 	WorkOutMachineDevice = models.BooleanField(default=True)
-	PulseMonitor = models.BooleanField(default=True)
-	TemperatureMonitor =  models.BooleanField(default=True)
+	PulseMonitor = models.BooleanField(default=False)
+	TemperatureMonitor =  models.BooleanField(default=False)
 	SleepPatternsMonitor = models.BooleanField(default=True)
 	GulcoseMonitoringDeviceID = models.CharField(max_length=200)
 	WorkOutMachineDeviceID = models.CharField(max_length=200)
@@ -62,9 +68,9 @@ class RegisterDevicesForPatient(models.Model):
 
 
 class PatientHealthData(models.Model):
-	Patient_ID = models.ForeignKey('Patient',default=1,blank=True)
-	InsuranceCompanyID = models.ForeignKey('InsuranceCompany',default=1,blank=True)
-	DataOfReading = models.DateTimeField(auto_now_add=True)
+	Patient_ID = models.ForeignKey(Patient,default=1,blank=True)
+	InsuranceCompanyID = models.ForeignKey(InsuranceCompany,default=1,blank=True)
+	DataOfReading = models.DateTimeField(blank=True)
 	SugarMonitoringDeviceReading = models.FloatField(default=0)
 	WorkOutMachineDeviceReading = models.FloatField(default=0)
 	PulseMonitorReading = models.FloatField(default=0)

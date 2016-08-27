@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'practitioner',
     'related_admin',
     'rest_framework',
+    'autofixture',
+    'django_extensions',
 ]
 
 MIDDLEWARE_CLASSES = [

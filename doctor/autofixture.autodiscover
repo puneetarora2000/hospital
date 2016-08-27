@@ -1,0 +1,9 @@
+from models import InsuranceCompany
+from autofixture import generators, register, AutoFixture
+
+class MyModelAutoFixture(AutoFixture):
+    field_values = {
+        'name': generators.StaticGenerator('this_is_my_static_name'),
+    }
+
+register(InsuranceCompany, MyModelAutoFixture)
