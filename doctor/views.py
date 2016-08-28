@@ -11,7 +11,8 @@ from django.core.context_processors import csrf
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 
-from doctor.serializers import GroupSerializer,PatientSerializer,UserSerializer,RegisterDevicesForPatientSerializer
+from doctor.serializers import *
+
 
 # Create your views here.
 
@@ -68,4 +69,14 @@ class  RegisterDevicesForPatientViewSet(viewsets.ModelViewSet):
     serializer_class = RegisterDevicesForPatientSerializer
 
 
+#InsuranceCompanySerializer
 
+class  InsuranceCompanyViewSet(viewsets.ModelViewSet):
+    queryset = InsuranceCompany.objects.all()
+    serializer_class = InsuranceCompanySerializer
+
+#PatientHealthData
+
+class  PatientHealthDataViewSet(viewsets.ModelViewSet):
+    queryset = PatientHealthData.objects.all()
+    serializer_class = PatientHealthDataSerializer

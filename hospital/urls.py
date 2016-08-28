@@ -15,38 +15,39 @@ Including another URLconf
 """
 from django.conf.urls import patterns
 from django.contrib import admin
+
 admin.autodiscover()
 
 from django.conf.urls import url, include
 from rest_framework import routers
-from doctor  import views
+from doctor import views
+from rest_framework.authtoken import views as authviews
+
 
 router = routers.DefaultRouter()
 router.register(r'users', views.UserViewSet),
 router.register(r'groups', views.GroupViewSet),
-router.register(r'patients', views. PatientViewSet)
-router.register(r'patientsdevices', views. RegisterDevicesForPatientViewSet)
+router.register(r'patients', views.PatientViewSet)
+router.register(r'patientsdevices', views.RegisterDevicesForPatientViewSet)
+router.register(r'insurancecompany', views.InsuranceCompanyViewSet)
+router.register(r'sensordata', views.PatientHealthDataViewSet)
+
 
 urlpatterns = patterns('',
-    url(r'^', include(router.urls)),
-    url(r'^admin/', admin.site.urls),
-    url(r'^appointments/', include('appointments.urls')),
-    url(r'^inventory/', include('inventory.urls')),
-    url(r'^doctor/', include('doctor.urls')),
-    url(r'^pharmacist/', include('pharmacist.urls')),
-    url(r'^employee/', include('employee.urls')),
-    url(r'^accounts/login/$', 'hospital.views.login'),
-    url(r'^accounts/auth/$', 'hospital.views.auth_view'),
-    url(r'^accounts/logout/$', 'hospital.views.logout'),
-    url(r'^accounts/loggedin/$', 'hospital.views.loggedin'),
-    url(r'^accounts/invalid/$', 'hospital.views.invalid_login'),
-    url(r'^accounts/register/$', 'hospital.views.register_user'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
-)
-
-
-
-
-
-
-
+                       url(r'^', include(router.urls)),
+                       url(r'^admin/', admin.site.urls),
+                       url(r'^appointments/', include('appointments.urls')),
+                       url(r'^inventory/', include('inventory.urls')),
+                       url(r'^doctor/', include('doctor.urls')),
+                       url(r'^pharmacist/', include('pharmacist.urls')),
+                       url(r'^employee/', include('employee.urls')),
+                       url(r'^accounts/login/$', 'hospital.views.login'),
+                       url(r'^accounts/auth/$', 'hospital.views.auth_view'),
+                       url(r'^accounts/logout/$', 'hospital.views.logout'),
+                       url(r'^accounts/loggedin/$', 'hospital.views.loggedin'),
+                       url(r'^accounts/invalid/$', 'hospital.views.invalid_login'),
+                       url(r'^accounts/register/$', 'hospital.views.register_user'),
+                       # url(r'^api-token-auth/', views.obtain_auth_token),
+                       url(r'^api-token-auth/', authviews.obtain_auth_token),
+                       url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+                       )

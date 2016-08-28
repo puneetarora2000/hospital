@@ -2,6 +2,8 @@ import csv
 import random
 import math
 
+#code from http://machinelearningmastery.com/
+
 def loadCsv(filename):
 	lines = csv.reader(open(filename, "rb"))
 	dataset = list(lines)

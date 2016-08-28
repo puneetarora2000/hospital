@@ -70,7 +70,7 @@ class RegisterDevicesForPatient(models.Model):
 class PatientHealthData(models.Model):
 	Patient_ID = models.ForeignKey(Patient,default=1,blank=True)
 	InsuranceCompanyID = models.ForeignKey(InsuranceCompany,default=1,blank=True)
-	DataOfReading = models.DateTimeField(blank=True)
+	DataOfReading = models.DateTimeField(blank=True,verbose_name="Date of Reading")
 	SugarMonitoringDeviceReading = models.FloatField(default=0)
 	WorkOutMachineDeviceReading = models.FloatField(default=0)
 	PulseMonitorReading = models.FloatField(default=0)

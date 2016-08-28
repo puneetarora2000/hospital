@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'autofixture',
     'django_extensions',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE_CLASSES = [
