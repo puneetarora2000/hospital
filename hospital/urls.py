@@ -21,6 +21,7 @@ admin.autodiscover()
 from django.conf.urls import url, include
 from rest_framework import routers
 from doctor import views
+from doctor.views import *
 from rest_framework.authtoken import views as authviews
 
 
@@ -32,6 +33,7 @@ router.register(r'patientsdevices', views.RegisterDevicesForPatientViewSet)
 router.register(r'insurancecompany', views.InsuranceCompanyViewSet)
 router.register(r'sensordata', views.PatientHealthDataViewSet)
 
+router.register(r'pats', views.PatientListViewSet,base_name='Patient')
 
 urlpatterns = patterns('',
                        url(r'^', include(router.urls)),
@@ -49,5 +51,6 @@ urlpatterns = patterns('',
                        url(r'^accounts/register/$', 'hospital.views.register_user'),
                        # url(r'^api-token-auth/', views.obtain_auth_token),
                        url(r'^api-token-auth/', authviews.obtain_auth_token),
-                       url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+                       url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+                      # url('^pat/(?P<usr>.+)/$', PatientListViewSet.as_view()),
                        )

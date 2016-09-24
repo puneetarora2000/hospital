@@ -8,8 +8,11 @@ from django.http import HttpResponse
 from forms import PatientForm
 from django.http import HttpResponseRedirect
 from django.core.context_processors import csrf
-from django.contrib.auth.models import User, Group
+from django.contrib.auth.models import  User, Group
 from rest_framework import viewsets
+from django.shortcuts import get_object_or_404
+from rest_framework import filters
+from rest_framework import generics
 
 from doctor.serializers import *
 
@@ -51,32 +54,49 @@ def create(request, doctor_id=1):
 
 #1
 class UserViewSet(viewsets.ModelViewSet):
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
+	queryset = User.objects.all().order_by('-date_joined')
+	serializer_class = UserSerializer
 #2
 class GroupViewSet(viewsets.ModelViewSet):
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
+	queryset = Group.objects.all()
+	serializer_class = GroupSerializer
 
 
 #7
 class  PatientViewSet(viewsets.ModelViewSet):
-    queryset = Patient.objects.all()
-    serializer_class = PatientSerializer
+	queryset = Patient.objects.all()
+	serializer_class = PatientSerializer
+
+#Query Based on the doctorid
+class PatientListViewSet(viewsets.ModelViewSet):
+	serializer_class = PatientSerializer
+	def get_queryset(self):
+		#usr = self.kwargs['usr']
+		try:
+			username = self.request.query_params.get('usr', None)
+			print username
+			userObj = User.objects.get(username=username)
+		except User.DoesNotExist:
+			userObj = None
+		return Patient.objects.filter(DoctorID=userObj)
+
+		# else:
+		# return Patient.objects.all()
+
 #7
 class  RegisterDevicesForPatientViewSet(viewsets.ModelViewSet):
-    queryset = RegisterDevicesForPatient.objects.all()
-    serializer_class = RegisterDevicesForPatientSerializer
+	queryset = RegisterDevicesForPatient.objects.all()
+	serializer_class = RegisterDevicesForPatientSerializer
 
 
 #InsuranceCompanySerializer
 
 class  InsuranceCompanyViewSet(viewsets.ModelViewSet):
-    queryset = InsuranceCompany.objects.all()
-    serializer_class = InsuranceCompanySerializer
+	queryset = InsuranceCompany.objects.all()
+	serializer_class = InsuranceCompanySerializer
 
 #PatientHealthData
 
 class  PatientHealthDataViewSet(viewsets.ModelViewSet):
-    queryset = PatientHealthData.objects.all()
-    serializer_class = PatientHealthDataSerializer
+	queryset = PatientHealthData.objects.all()
+	serializer_class = PatientHealthDataSerializer
